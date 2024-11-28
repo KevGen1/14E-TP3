@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\14E-TP2-A2024\Automate.csproj" />
+    <ProjectReference Include="..\Automate\Automate.csproj" />
   </ItemGroup>
 
   <ItemGroup>
