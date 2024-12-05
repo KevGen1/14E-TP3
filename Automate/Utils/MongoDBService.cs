@@ -11,7 +11,6 @@ namespace Automate.Utils
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<User> _users;
         private readonly IMongoCollection<Task> _tasks;
-		private readonly IMongoCollection<ClimateSystem> _climateSystems;
 
 		public MongoDBService(string databaseName)
 		{
@@ -19,7 +18,6 @@ namespace Automate.Utils
 			_database = client.GetDatabase(databaseName);
 			_users = _database.GetCollection<User>("Users");
 			_tasks = _database.GetCollection<Task>("Tasks");
-			_climateSystems = _database.GetCollection<ClimateSystem>("ClimateSystems");
 
 			AddFirstUser("Andre", false);
 			AddFirstUser("Frederic", true);
@@ -101,22 +99,6 @@ namespace Automate.Utils
 
 			_tasks.UpdateOne(filter, update);
 		}
-
-		public ObservableCollection<ClimateSystem> GetClimateSystems()
-		{
-			var filter = Builders<ClimateSystem>.Filter.Empty;
-			var climateSystems = _climateSystems.Find(filter).ToList();
-
-			return new ObservableCollection<ClimateSystem>(climateSystems);
-		}
-
-		public void SaveClimateSystem(ClimateSystem climateSystem)
-		{
-			var filter = Builders<ClimateSystem>.Filter.Eq(c => c.Id, climateSystem.Id);
-
-			_climateSystems.ReplaceOne(filter, climateSystem, new ReplaceOptions { IsUpsert = true });
-		}
-
-	}
+    }
 
 }

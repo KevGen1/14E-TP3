@@ -25,7 +25,6 @@ namespace Automate.ViewModels
 		public ICommand CloseDialogCommand { get; }
 		public RelayCommand ShowDialogCommand { get; }
 		public RelayCommand LogoutCommand { get; }
-		public RelayCommand GetUnitValuesCommand { get; }
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 		private readonly NavigationService _navigationService;
@@ -45,7 +44,6 @@ namespace Automate.ViewModels
 			ShowDialogCommand = new RelayCommand(ShowDialog);
 			CloseDialogCommand = new RelayCommand(CloseDialog);
 			LogoutCommand = new RelayCommand(Logout);
-			GetUnitValuesCommand = new RelayCommand(GetUnitValues);
 
 			_navigationService = new NavigationService();
 			Window = openedWindow;
@@ -204,11 +202,6 @@ namespace Automate.ViewModels
 					break;
 				}
 			}
-		}
-
-		public void GetUnitValues()
-		{
-
 		}
 
 		protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
